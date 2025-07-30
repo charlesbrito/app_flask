@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Recibo Gerado</title>
+  <style>
+     @page {
+    size: A4;
+    margin: 2cm;
+  }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .recibo-container {
+      background: white;
+      width: 400px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .recibo-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 10px;
+    }
+
+    .linha {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+
+    .linha span {
+      font-weight: bold;
+      color: #555;
+    }
+
+    .valor {
+      color: #222;
+    }
+
+    .assinatura {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .assinatura p {
+      margin: 0;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .assinatura hr {
+      width: 70%;
+      margin: 10px auto 0 auto;
+      border: none;
+      border-bottom: 1px solid #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="recibo-container">
+    <h2>Recibo de Compra</h2>
+
+    <div class="linha">
+      <span>Comprador:</span>
+      <span class="valor">{{ comprador }}</span>
+    </div>
+
+    <div class="linha">
+      <span>Produto:</span>
+      <span class="valor">{{ produto }}</span>
+    </div>
+
+    <div class="linha">
+      <span>Quantidade:</span>
+      <span class="valor">{{ quantidade }}</span>
+    </div>
+
+    <div class="linha">
+      <span>Valor Total:</span>
+      <span class="valor">{{ valor_total }}</span>
+    </div>
+
+    <div class="linha">
+      <span>Data:</span>
+      <span class="valor">{{ data_compra }}</span>
+    </div>
+
+    <div class="assinatura">
+      <p>Assinatura: {{ assinatura }}</p>
+      <hr>
+    </div>
+  </div>
+
+</body>
+</html>

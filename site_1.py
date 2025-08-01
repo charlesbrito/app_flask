@@ -23,18 +23,15 @@ def fechar_conexao(exception=None):
 
 @app.route("/", methods=['GET', 'POST' ])
 def ola_mundo():
-    db = get_db()
+    usuario = 'admin'
+    senha = 'jesussalva'
+   
     if request.method == "POST":
-       nome = request.form.get('nome')
-       senha = request.form.get('senha')
-
-       usuario = db.query(models.Usuario).filter_by(nome=nome, senha=senha).first()
-       if usuario:
-           return render_template("formulario.html")
-       else:
-            return render_template("index.html")
+       if request.form.get('usuario') == usuario and request.form.get('senha') == senha:
+           return render_template('base.html')
+      
         
-    return render_template("inicio.html")
+    return render_template("login.html")
 
 @app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():

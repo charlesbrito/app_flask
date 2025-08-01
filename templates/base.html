@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <title>{% block title %}Magno{% endblock %}</title>
+</head>
+<body>
+    <div class="sidebar" >
+         <h1 class="logo">
+    <a href="https://github.com/charlesbrito">Magno<span>Dev</span></a>
+  </h1>
+  <div class="nav-wrap">
+    <nav class="main-nav" role="navigation">
+      <ul class="unstyled list-hover-slide">
+        <li><a href="#">Home</a></li>
+        <li><a href="{{ url_for('gerar_formulario') }}">Gerar Recibo</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+    </div>
+   <div class="main-content">
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

@@ -67,6 +67,11 @@
   </style>
 </head>
 <body>
+  {% extends 'base.html' %}
+
+  {% block title %}Formulário de Recibo{% endblock %}
+
+  {% block content %}
 
   <div class="recibo">
     <h2>Recibo de Compra</h2>
@@ -93,6 +98,7 @@
 
       <button type="submit">Gerar Recibo</button>
     </form>
+    {% endblock %}
   </div>
 
 </body>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tela de Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Área de Login -->
+    <div class="login">
+      <div class="container">
+        <h1>Log in</h1>
+        <form action="" method="POST">
+          <input type="text" name="usuario"  placeholder="Usuário" required>
+          <input type="password" name="senha" placeholder="Senha" required><br>
+          <a href="#">Esqueci minha senha</a><br><br>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+    </div>
+      <div class="register">
+          <div class="container">
+              <i class="fas fa-user-plus fa-5x"></i>
+              <h2>Olá, Cliente!</h2>
+              <p>Não tem uma conta? Clique em Registrar e crie sua conta</p>
+             <a href="{{ url_for('cadastro') }}" class="btn">
+                Register <i class="fas fa-arrow-circle-right"></i>
+              </a>
+          </div>
+      </div>  
+    </div>
+</body>
+</html>

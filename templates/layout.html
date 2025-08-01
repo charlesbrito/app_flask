@@ -2,105 +2,201 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Recibo Gerado</title>
+  <title>Recibo</title>
   <style>
-     @page {
-    size: A4;
-    margin: 2cm;
-  }
+    @media print {
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .no-print {
+        display: none;
+      }
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      font-family: 'Courier New', Courier, monospace;
+      margin: 20mm;
+      color: #000;
+    }
+
+    .header {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .recibo-container {
-      background: white;
-      width: 400px;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .recibo-container h2 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 25px;
-      border-bottom: 2px solid #4CAF50;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #ccc;
       padding-bottom: 10px;
     }
 
-    .linha {
+    .logo {
+      background: #ccc;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .title {
+      font-size: 32px;
+      text-transform: lowercase;
+      font-weight: bold;
+    }
+
+    .info {
+      margin-top: 20px;
       display: flex;
       justify-content: space-between;
-      margin: 10px 0;
     }
 
-    .linha span {
-      font-weight: bold;
-      color: #555;
+    .section {
+      width: 48%;
     }
 
-    .valor {
-      color: #222;
+    .section h4 {
+      margin-bottom: 5px;
     }
 
-    .assinatura {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .assinatura p {
-      margin: 0;
+    .details {
+      margin-top: 20px;
       font-size: 14px;
-      color: #777;
     }
 
-    .assinatura hr {
-      width: 70%;
-      margin: 10px auto 0 auto;
-      border: none;
-      border-bottom: 1px solid #aaa;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .totals {
+      margin-top: 10px;
+      text-align: right;
+      font-size: 16px;
+    }
+
+    .total-box {
+      margin-top: 20px;
+      padding: 10px;
+      border: 2px solid #000;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .signature {
+      margin-top: 40px;
+      text-align: right;
+      font-family: cursive;
+      font-size: 18px;
+    }
+
+    .terms {
+      margin-top: 30px;
+      font-size: 12px;
+    }
+
+    .bank-info {
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="recibo-container">
-    <h2>Recibo de Compra</h2>
+  <div class="header">
+    <div class="title">recibo teste</div>
+    <div class="logo">LOGO</div>
+  </div>
 
-    <div class="linha">
-      <span>Comprador:</span>
-      <span class="valor">{{ comprador }}</span>
+  <div class="info">
+    <div class="section">
+      <h4>DE</h4>
+      <p>Breno Goncalves<br>Quadra 508<br>72503-700<br>Manaus</p>
     </div>
-
-    <div class="linha">
-      <span>Produto:</span>
-      <span class="valor">{{ produto }}</span>
+    <div class="section">
+      <p><strong>RECIBO #</strong> BR-001<br>
+         <strong>DATA DO RECIBO</strong> {{ data_compra }}<br>
+         <strong>P.O.#</strong> 1530/2019<br>
+         <strong>DATA DE VENCIMENTO</strong> 29/01/2019</p>
     </div>
+  </div>
 
-    <div class="linha">
-      <span>Quantidade:</span>
-      <span class="valor">{{ quantidade }}</span>
+  <div class="info">
+    <div class="section">
+      <h4>COBRAR A</h4>
+      <p>{{ comprador }}<br>Pimentel 437<br>03677-040<br>Belém</p>
     </div>
-
-    <div class="linha">
-      <span>Valor Total:</span>
-      <span class="valor">{{ valor_total }}</span>
+    <div class="section">
+      <h4>ENVIAR PARA</h4>
+      <p>{{ comprador }}<br>Crispiniano 404<br>58108-075<br>Recife</p>
     </div>
+  </div>
 
-    <div class="linha">
-      <span>Data:</span>
-      <span class="valor">{{ data_compra }}</span>
-    </div>
+  <table>
+    <thead>
+      <tr>
+        <th>QTD</th>
+        <th>DESCRIÇÃO</th>
+        <th>PREÇO POR UNIDADE</th>
+        <th>VALOR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ quantidade }}</td>
+        <td>{{ produto }}</td>
+        <td>{{ valor_total }}</td>
+        <td>{{ valor_total}} </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Por mês aulas de capoeira</td>
+        <td>95.00</td>
+        <td>190.00</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Grande guarda-sol</td>
+        <td>65.00</td>
+        <td>195.00</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <div class="assinatura">
-      <p>Assinatura: {{ assinatura }}</p>
-      <hr>
+  <div class="totals">
+    <p>Subtotal: R$ 635,00</p>
+    <p>ICMS 17.0%: R$ 107,95</p>
+  </div>
+
+  <div class="total-box">
+    TOTAL R${{ valor_total }}
+  </div>
+
+  <div class="signature">
+    {{ assinatura }}
+  </div>
+
+  <div class="terms">
+    <p><strong>TERMOS E CONDIÇÕES</strong></p>
+    <p>O pagamento é devido no prazo de 15 dias</p>
+
+    <div class="bank-info">
+      <p>Caixa Econômica Federal<br>
+      Account Number: 12345678<br>
+      Routing Number: 09876543210</p>
     </div>
   </div>
 
